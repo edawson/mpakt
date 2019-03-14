@@ -14,14 +14,21 @@ int main(){
     
     string testWrite = "testOut.txt";
     string testRead = "testIn.txt";
+
     ofstream ofi;
-    ofi.open(testWrite.c_str(), ios::binary);
-    mpakt::write_c_string(ofi, strlen(s.c_str()), s.c_str());
+    ofi.open(testWrite, ios::out | ios::binary);
+    if (ofi.good()){
+        mpakt::write_c_string(ofi, strlen(s.c_str()), s.c_str());
+    }
+    else{
+        cerr << "Error: could not open output stream" << endl;
+    }
+
     ifstream ifi;
-    ifi.open(testWrite.c_str(), ios::binary);
+    ifi.open(testWrite.c_str(), ios::in | ios::binary);
     char* x;
     mpakt::read_c_string(ifi, x);
-    //cout << x << endl;
+    cerr << x << endl;
 
 
     
