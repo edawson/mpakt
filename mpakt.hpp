@@ -25,7 +25,7 @@ inline std::istream& read_c_string(std::istream& is, char*& x){
 };
 
 template<typename X>
-inline std::ostream& write_field(std::ostream& os, const X& x){
+inline std::ostream& write_field(std::ostream& os, X& x){
     os.write(reinterpret_cast<char*>(&x), sizeof(X));
     return os;
 };
@@ -50,7 +50,7 @@ inline std::istream& read_field(std::istream&is, X*& x){
 };
 
 template<typename X>
-inline std::ostream& write_array(std::ostream& os, std::size_t count, const X*& data){
+inline std::ostream& write_array(std::ostream& os, std::size_t count, X*& data){
     os.write((char*)&count, sizeof(count));
     os.write(reinterpret_cast<char*>(&data), count * sizeof(X));
     return os;
