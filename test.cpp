@@ -16,19 +16,24 @@ int main(){
     string testRead = "testIn.txt";
 
     ofstream ofi;
-    ofi.open(testWrite, ios::out | ios::binary);
+    ofi.open(testWrite.c_str(), ios::binary);
+    char* scopy;
     if (ofi.good()){
         mpakt::write_c_string(ofi, strlen(s.c_str()), s.c_str());
     }
     else{
         cerr << "Error: could not open output stream" << endl;
     }
+    ofi.close();
+    
+    
 
     ifstream ifi;
-    ifi.open(testWrite.c_str(), ios::in | ios::binary);
+    ifi.open(testWrite.c_str(), ios::binary);
     char* x;
     mpakt::read_c_string(ifi, x);
-    cerr << x << endl;
+    cerr << "Read the following from binary file: " << x << endl;
+    ifi.close();
 
 
     
