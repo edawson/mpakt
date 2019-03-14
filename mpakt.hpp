@@ -9,10 +9,15 @@ namespace mpakt{
 
 const static std::uint32_t MPAKT_V0_MAGIC_NUMBER = 4242420;
 
-inline std::ostream& write_c_string(std::ofstream& os, std::size_t len, const char* x){
+inline std::ostream& write_c_string(std::ostream& os, std::size_t len, const char* x){
     os.write(reinterpret_cast<char*>(&len), sizeof(std::size_t));
     os.write(x, len);
     return os;
+};
+
+inline std::ostream& write_c_string(std::ostream& os, const char* x){
+    std::size_t len = strlen(x);
+    return write_c_string(os, len, x);
 };
 
 inline std::istream& read_c_string(std::istream& is, char*& x){
